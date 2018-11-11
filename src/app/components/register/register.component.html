@@ -1,0 +1,24 @@
+<h1 class="page-title"> Register </h1>
+
+<form class="" novalidate #f="ngForm" (ngSubmit="register(f)")>
+  <div class="form-group">
+    <label>Username</label>
+    <input
+    type="text"
+    name="username"
+    class="form-control"
+    placeholder="Username"
+    [(ngModel)]="username"
+    #userName="ngModel"
+    minlength="2"
+    required
+    >
+  </div>
+  <div class="alert alert-danger" *ngIf="userName.errors?.required && userName.touched">
+    Username is Required.
+
+  </div>
+  <div class="alert alert-danger" *ngIf="userName.errors?.minlength && userName.touched">
+        Minimum Length is 2. 
+  </div>
+</form>

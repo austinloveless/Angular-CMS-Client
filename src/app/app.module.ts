@@ -8,6 +8,8 @@ import { HttpModule } from "@angular/http";
 import { FormsModule } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
 import { PagesComponent } from "./components/pages/pages.component";
+import { UserService } from "./services/user.service";
+import { RegisterComponent } from './components/register/register.component';
 
 const appRoutes: Routes = [
   { path: ":page", component: PagesComponent },
@@ -15,14 +17,14 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, PagesComponent],
+  declarations: [AppComponent, NavbarComponent, PagesComponent, RegisterComponent],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [PageService],
+  providers: [PageService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
