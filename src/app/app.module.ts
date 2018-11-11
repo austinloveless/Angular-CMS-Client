@@ -9,15 +9,24 @@ import { FormsModule } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
 import { PagesComponent } from "./components/pages/pages.component";
 import { UserService } from "./services/user.service";
-import { RegisterComponent } from './components/register/register.component';
+import { RegisterComponent } from "./components/register/register.component";
+import { LoginComponent } from "./components/login/login.component";
 
 const appRoutes: Routes = [
+  { path: "register", component: RegisterComponent },
+  { path: "login", component: LoginComponent },
   { path: ":page", component: PagesComponent },
   { path: "", component: PagesComponent }
 ];
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, PagesComponent, RegisterComponent],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    PagesComponent,
+    RegisterComponent,
+    LoginComponent
+  ],
   imports: [
     BrowserModule,
     HttpModule,
