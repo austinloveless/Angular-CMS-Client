@@ -14,4 +14,10 @@ export class PageService {
   getPages() {
     return this.http.get("http://localhost:8000/pages").map(res => res.json());
   }
+
+  getPage(slug) {
+    return this.http
+      .get("http://localhost:8000/pages/" + slug)
+      .map(res => res.json());
+  }
 }
