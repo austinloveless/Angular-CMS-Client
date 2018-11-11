@@ -1,6 +1,8 @@
-import { Component, OnInit } from "@angular/core";
-import { UserService } from "./../../services/user.service";
 import { Router } from "@angular/router";
+import { Component, OnInit } from "@angular/core";
+
+import { UserService } from "./../../services/user.service";
+
 @Component({
   selector: "app-register",
   templateUrl: "./register.component.html",
@@ -8,11 +10,14 @@ import { Router } from "@angular/router";
 })
 export class RegisterComponent implements OnInit {
   userExists: boolean = false;
+
   constructor(private userService: UserService, private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (localStorage.getItem("user")) this.router.navigateByUrl("");
+  }
 
-  register(value, valid) {
+  register({ value, valid }) {
     if (valid) {
       this.userService.register(value).subscribe(res => {
         if (res == "userExists") {
@@ -24,11 +29,12 @@ export class RegisterComponent implements OnInit {
             2000
           );
         } else {
+          localStorage.setItem("userRegistered", "true");
           this.router.navigateByUrl("login");
         }
       });
     } else {
-      console.log("form is not valid");
+      console.log("Form is not valid.");
     }
   }
 }
