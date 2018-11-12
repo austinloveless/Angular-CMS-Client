@@ -26,4 +26,22 @@ export class PageService {
       .post("http://localhost:8000/pages/add-page", value)
       .map(res => res.json());
   }
+
+  getEditPage(id) {
+    return this.http
+      .get("http://localhost:8000/pages/edit-page/" + id)
+      .map(res => res.json());
+  }
+
+  postEditPage(value) {
+    return this.http
+      .post("http://localhost:8000/pages/edit-page/" + value.id, value)
+      .map(res => res.json());
+  }
+
+  getDeletePage(id) {
+    return this.http
+      .get("http://localhost:8000/pages/delete-page/" + id)
+      .map(res => res.json());
+  }
 }
