@@ -23,9 +23,8 @@ export class AdminPagesComponent implements OnInit {
   }
 
   deletePage(id) {
-    console.log(id);
     if (confirm("Confirm deletion")) {
-      this.pageService.getDeletePage(id).subscribe(res => {
+      this.pageService.deletePage(id).subscribe(res => {
         if (res == "error") {
           this.errorMsg = true;
           setTimeout(

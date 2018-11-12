@@ -1,5 +1,6 @@
-import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { Component, OnInit } from "@angular/core";
+
 import { PageService } from "./../../services/page.service";
 
 declare var CKEDITOR: any;
@@ -10,14 +11,15 @@ declare var CKEDITOR: any;
   styleUrls: ["./admin-edit-page.component.css"]
 })
 export class AdminEditPageComponent implements OnInit {
+  page: any;
   title: string;
   content: string;
   id: string;
   successMsg: boolean = false;
-  param: any;
-  page: any;
   errorMsg: boolean = false;
   errorMsg2: boolean = false;
+  param: any;
+  sidebar: boolean = false;
 
   constructor(
     private router: Router,
@@ -31,13 +33,17 @@ export class AdminEditPageComponent implements OnInit {
     } else {
       CKEDITOR.replace("content");
     }
+
     this.route.params.subscribe(params => {
       this.param = params["id"];
       this.pageService.getEditPage(this.param).subscribe(page => {
-        this.title = page.title;
-        this.content = page.content;
-        this.id = page._id;
         this.page = page;
+        this.title = page["title"];
+        this.content = page["content"];
+        this.id = page["_id"];
+        if (page["sidebar"] === "yes") {
+          this.sidebar = true;
+        }
       });
     });
   }
