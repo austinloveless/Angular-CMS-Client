@@ -20,4 +20,10 @@ export class PageService {
       .get("http://localhost:8000/pages/" + slug)
       .map(res => res.json());
   }
+
+  postAddPage(value) {
+    return this.http
+      .post("http://localhost:8000/pages/add-page", value)
+      .map(res => res.json());
+  }
 }
