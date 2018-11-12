@@ -1,11 +1,10 @@
 import { Http } from "@angular/http";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
-import { Injectable } from "@angular/core";
 import "rxjs/add/operator/map";
 
-@Injectable({
-  providedIn: "root"
-})
+import { Injectable } from "@angular/core";
+
+@Injectable()
 export class PageService {
   constructor(private http: Http) {}
 
@@ -39,7 +38,7 @@ export class PageService {
       .map(res => res.json());
   }
 
-  getDeletePage(id) {
+  deletePage(id) {
     return this.http
       .get("http://localhost:8000/pages/delete-page/" + id)
       .map(res => res.json());
